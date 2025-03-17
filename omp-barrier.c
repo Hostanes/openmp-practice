@@ -13,10 +13,15 @@ void print_Array(int *arr, int size) {
 
 int main() {
 
-  int a[MAX_NUM];
-  int b[MAX_NUM];
   int n = MAX_NUM;
   int i;
+
+  int **a = malloc(MAX_NUM * sizeof *a);
+  for (i = 0; i < MAX_NUM; i++)
+    a[i] = malloc(MAX_NUM * sizeof *a[i]);
+  int **b = malloc(MAX_NUM * sizeof *b);
+  for (i = 0; i < MAX_NUM; i++)
+    b[i] = malloc(MAX_NUM * sizeof *b[i]);
 
   clock_t t = clock();
 
@@ -24,12 +29,12 @@ int main() {
   {
 #pragma omp for
     for (i = 0; i < n; i++) {
-      a[i] = i + n;
+      *a[i] = i + n;
     }
 
 #pragma omp for
     for (i = 0; i < n; i++) {
-      b[i] = n * 2;
+      *b[i] = n * 2;
     }
   }
 
@@ -37,6 +42,11 @@ int main() {
   double time_taken = ((double)t) / CLOCKS_PER_SEC;
   printf("CLOCKS_PER_SEC: %f\n", (double)CLOCKS_PER_SEC);
   printf("%f seconds\n", time_taken);
+
+  for (i = 0; i < MAX_NUM; i++)
+    free(a[i]);
+  for (i = 0; i < MAX_NUM; i++)
+    free(b[i]);
 
   // Uncomment the following lines if you want to print the arrays (not
   // recommended for large n) printf("A\n"); print_Array(a, n); printf("B\n");
