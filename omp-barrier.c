@@ -19,6 +19,7 @@ int main() {
   int **a = malloc(MAX_NUM * sizeof *a);
   for (i = 0; i < MAX_NUM; i++)
     a[i] = malloc(MAX_NUM * sizeof *a[i]);
+
   int **b = malloc(MAX_NUM * sizeof *b);
   for (i = 0; i < MAX_NUM; i++)
     b[i] = malloc(MAX_NUM * sizeof *b[i]);
