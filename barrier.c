@@ -16,7 +16,7 @@ int main() {
     TID = omp_get_thread_num();
     if (TID < omp_get_num_threads() / 2)
       system("sleep 3");
-    bt1 = time(NULL);
+    t1 = time(NULL);
     printf("Thread %d before barrier at %s \n", omp_get_thread_num(),
            ctime(&t1));
 #pragma omp barrier

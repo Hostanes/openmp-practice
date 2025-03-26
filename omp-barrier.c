@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX_NUM 1000000
+#define MAX_NUM 100000
 
 void print_Array(int *arr, int size) {
   for (int i = 0; i < size; i++) {
