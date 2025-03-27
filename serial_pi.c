@@ -11,7 +11,7 @@ int main() {
 
   // Seed the random number generator
   srand(time(NULL));
-  omp_set_num_threads(1);
+  omp_set_num_threads(2);
 
   double start_time = omp_get_wtime();
 
