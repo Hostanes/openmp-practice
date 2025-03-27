@@ -21,7 +21,6 @@ void mxv(int m, int n, double *a, double *b, double *c) {
 void serial_mxv(int m, int n, double *a, double *b, double *c) {
   int i, j;
 
-#pragma omp parallel for default(none) shared(m, n, a, b, c) private(i, j)
   for (i = 0; i < m; i++)
 
   {
