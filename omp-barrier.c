@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
+// DONT DEFINE TOO HIGH OR YOU WILL CRASH!!!!!
 #define MAX_NUM 100000
 
 void print_Array(int *arr, int size) {

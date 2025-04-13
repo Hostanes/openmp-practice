@@ -1,4 +1,4 @@
-// dynamic-schedule.c
+// guided_schedule.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -12,11 +12,11 @@ int main() {
         work_time[i] = rand() % 100;
     }
 
-    omp_set_num_threads(8);
+    omp_set_num_threads(4);
 
-    printf("Dynamic scheduling\n");
-//Unpredictable or highly variable iteration cost, Threads grab next chunk when done, Avoids idle threads
-    #pragma omp parallel for schedule(dynamic, 2) shared(work_time)
+    printf("Guided scheduling\n");
+//Large loop with decreasing load, Starts with large chunks, shrinks over time, Balances load with lower overhead than dynamic
+    #pragma omp parallel for schedule(guided) shared(work_time)
     for (int i = 0; i < N; i++) {
         usleep(work_time[i] * 1000);
         printf("Thread %d processed iteration %d (work = %d ms)\n",

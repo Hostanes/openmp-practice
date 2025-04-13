@@ -1,6 +1,7 @@
+#include <omp.h>
 #include <stdio.h>
 
-#define MAX_NUM 100000
+#define MAX_NUM 1000000
 
 int isPrime(int x) {
   for (int i = 2; i < x / 2; i++) {
@@ -11,20 +12,19 @@ int isPrime(int x) {
   return 0;
 }
 
-void funcA() {
-
-  int prime = 3;
-  for (int i = 3; i < MAX_NUM; i++) {
-    if (isPrime(i)) {
-    }
-  }
-}
-
-
-int main(){
+int main() {
 
   int x[MAX_NUM];
 
-  
-  
+  double start_time = omp_get_wtime();
+
+#pragma omp parallel for 
+  for (int i = 0; i < MAX_NUM; i++) {
+    isPrime(i);
+  }
+
+  double end_time = omp_get_wtime();
+  double time_taken = end_time - start_time;
+
+  printf("time taken: %f\n", time_taken);
 }
